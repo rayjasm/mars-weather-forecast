@@ -13,17 +13,20 @@
         <div id="media-container"></div>
         <p>{{title}}</p>
         <p>Explanation : {{explanation}}</p>
+        <small>copyright&copy; <a href="https://apod.nasa.gov/apod/astropix.html">NASA</a></small>
         </center>
 
     <script>
         var media_type = "{{media_type}}";
         var url = "{{url}}";
-        var container = document.getElementById('media-container');
+        
+        var media_container = document.getElementById('media-container');
         if(media_type == 'image'){
-			container.innerHTML = '<p><img src=" ' + url + '"></p>';
+			media_container.innerHTML = '<p><img src="' + url + '" alt="Astronomy Picture"></p>';
 		}else{
-            container.innerHTML = '<iframe width="560" height="315" src="' + url + '"?loop=1 &autoplay=1 &mute=1 &rel=0 &modestbranding=1" frameborder="0" allowfullscreen="0"></iframe>';
+            media_container.innerHTML = '<iframe width="560" height="315" src="' + url + '?loop=1&autoplay=1&mute=1&rel=0&modestbranding=1" frameborder="0" allowfullscreen></iframe>';
         }
     </script>
+
     </body>
 </html>
