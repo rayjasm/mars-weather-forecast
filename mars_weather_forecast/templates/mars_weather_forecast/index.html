@@ -8,20 +8,22 @@
     </head>
 
     <body>
-        <center><h1>{{date}}の天体写真</h1>
+        <center><h1>{{date}}の天文写真</h1>
         <br>
-        <iframe width="560" height="315"
-        src="{{url}}
-        ?loop=1
-        &autoplay=1
-        &mute=1
-        &rel=0
-        &modestbranding=1"
-        frameborder="0" allowfullscreen="0">
-        </iframe>
-        <p></p>
+        <div id="media-container"></div>
         <p>{{title}}</p>
         <p>Explanation : {{explanation}}</p>
         </center>
+
+    <script>
+        var media_type = "{{media_type}}";
+        var url = "{{url}}";
+        var container = document.getElementById('media-container');
+        if(media_type == 'image'){
+			container.innerHTML = '<p><img src=" ' + url + '"></p>';
+		}else{
+            container.innerHTML = '<iframe width="560" height="315" src="' + url + '"?loop=1 &autoplay=1 &mute=1 &rel=0 &modestbranding=1" frameborder="0" allowfullscreen="0"></iframe>';
+        }
+    </script>
     </body>
 </html>

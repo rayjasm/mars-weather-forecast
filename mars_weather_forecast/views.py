@@ -16,14 +16,16 @@ def getData():
             'date': response.get('date'),
             'url': response.get('url'),
             'title': response.get('title'),
-            'explanation': response.get('explanation')
+            'explanation': response.get('explanation'),
+            'media_type' : response.get('media_type'),
         } 
     except (requests.exceptions.RequestException, Timeout, ConnectionError):
       result = {
             'date': 'Error',
-            'url': 'Error',
+            'url': '',
             'title': 'Error',
-            'explanation': 'Error'
+            'explanation': 'Error',
+            'media_type' : '',
         } 
     return result
 
@@ -33,6 +35,7 @@ def index(request):
     'url' : '',
     'title' : '', 
     'explanation' : '',
+    'media_type' : '',
   }
   
   params = getData()
