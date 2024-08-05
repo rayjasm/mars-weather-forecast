@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Astronomy Picture of the Day</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'mars_weather_forecast/css/style.css' %}" />
+    </head>
+
+    <body>
+        <center><h1>{{date}}の天体写真</h1>
+        <br>
+        <iframe width="560" height="315"
+        src="{{url}}
+        ?loop=1
+        &autoplay=1
+        &mute=1
+        &rel=0
+        &modestbranding=1"
+        frameborder="0" allowfullscreen="0">
+        </iframe>
+        <p></p>
+        <p>{{title}}</p>
+        <p>Explanation : {{explanation}}</p>
+        </center>
+    </body>
+</html>
