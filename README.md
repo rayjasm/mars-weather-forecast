@@ -1,5 +1,4 @@
-pip install Django
-
-python manage.py runserver
-
-http://localhost:8000/mars_weather_forecast/
+Application for get Astronomy Picture of the Day<br>
+<br>
+pip install Django<br>
+python manage.py runserver<br>
