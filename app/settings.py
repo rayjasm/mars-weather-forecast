@@ -16,15 +16,22 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-yhlpocuyxp4@_$8)r0g2t*6#^sb@!^!io1^se(i(0ho)=m=)m)"
+SECRET_KEY = 'django-insecure-yhlpocuyxp4@_$8)r0g2t*6#^sb@!^!io1^se(i(0ho)=m=)m)'
+# SECRET_KEY = os.environ['SECRET_KEY']
+try:
+    from .settings_local import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    API_KEY = os.environ['API_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -56,7 +63,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'mars_weather_forecast' / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -123,11 +130,3 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-try:
-    from .settings_local import *
-except ImportError:
-    pass
-
-if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']

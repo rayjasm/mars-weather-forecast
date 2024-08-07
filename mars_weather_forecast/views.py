@@ -6,7 +6,7 @@ import requests
 import json
 
 def getData():
-    KEY = settings.SECRET_KEY
+    KEY = settings.API_KEY
     url = f"https://api.nasa.gov/planetary/apod?api_key={KEY}"
     headers = {'Content-Type': 'application/json'}
     try:
