@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import random
+import string
+
+# deploy
+# from dotenv import load_dotenv
+# load_dotenv(dotenv_path="/home/ec2-user/Django/mars-weather-forecast/.env")
+# API_KEY = os.getenv('API_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yhlpocuyxp4@_$8)r0g2t*6#^sb@!^!io1^se(i(0ho)=m=)m)'
-# SECRET_KEY = os.environ['SECRET_KEY']
+def generate_secret_key():
+    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(50))
+
+SECRET_KEY = generate_secret_key()
+
+# deploy時はコメントアウト
 try:
     from .settings_local import *
 except ImportError:
@@ -35,6 +46,8 @@ if not DEBUG:
 
 ALLOWED_HOSTS = []
 
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_HTTPONLY = True
 
 # Application definition
 
@@ -58,7 +71,10 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# local
 ROOT_URLCONF = "app.urls"
+# deploy
+# ROOT_URLCONF = "mars_weather_forecast.urls"
 
 TEMPLATES = [
     {
