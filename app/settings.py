@@ -32,14 +32,9 @@ def generate_secret_key():
 
 SECRET_KEY = generate_secret_key()
 
-# deploy時はコメントアウト
-try:
-    from .settings_local import *
-except ImportError:
-    pass
+DEBUG = True
 
-if not DEBUG:
-    API_KEY = os.environ['API_KEY']
+API_KEY = os.environ['API_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
